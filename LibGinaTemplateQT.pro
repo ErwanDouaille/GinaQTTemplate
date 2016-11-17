@@ -5,18 +5,19 @@ CONFIG -= qt
 
 SOURCES += main.cpp
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/lib/release/ -lGina
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/lib/debug/ -lGina
-else:unix: LIBS += -L$$PWD/lib/ -lGina
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/lib/ -lGinaWin32
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/lib/ -lGinaWin32
+else:unix: LIBS += -L$$PWD/lib/ -lGinaUnix
 
 INCLUDEPATH += $$PWD/include
 DEPENDPATH += $$PWD/include
 
-win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/lib/release/libGina.a
-else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/lib/debug/libGina.a
-else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/lib/release/Gina.lib
-else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/lib/debug/Gina.lib
-else:unix: PRE_TARGETDEPS += $$PWD/lib/libGina.a
+# TODO DEBUG VERSION
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/lib/libGinaWin32.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/lib/libGinaWin32.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/lib/libGina.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/lib/libGina.lib
+else:unix: PRE_TARGETDEPS += $$PWD/lib/libGinaUnix.a
 
 HEADERS += \
     Leap.h \

@@ -29,19 +29,23 @@ int main(int argc, char *argv[])
     // HERE, declare your generators/processors/observers and add it to the environment
 
     // Check if your generators/processors/observers are commpatible
-    if(!environment->checkCompatibility()){
+    if(!environment->checkCompatibility())
+    {
         cerr << "Nodes are not compatible." << endl;
         return 2;
     }
 
     // Check if you started the environment
-    if(!environment->start()){
+    if(!environment->start())
+    {
         cerr << "Environnement not started." << endl;
         return 2;
     }
 
     while(!finish)
+    {
         environment->update();
+    }
 
     environment->stop();
 
