@@ -3,7 +3,10 @@ CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG -= qt
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    mygenerator.cpp \
+    myprocessor.cpp \
+    myobserver.cpp
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/lib/ -lGinaWin32
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/lib/ -lGinaWin32
@@ -37,4 +40,7 @@ HEADERS += \
     LgPoint3D.h \
     LgProcessor.h \
     LgSwitch.h \
-    LgTimer.h
+    LgTimer.h \
+    mygenerator.h \
+    myprocessor.h \
+    myobserver.h
